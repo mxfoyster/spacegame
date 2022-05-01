@@ -1,0 +1,26 @@
+body{
+    background-color: black;
+    min-height: 95vh;
+    min-width: 95vw;
+    border-style: groove;
+    overflow: hidden;
+    margin: auto;
+}
+
+#scoreText{
+    font-size: 1.3rem;
+    padding: 1em;
+    color: aqua;
+}
+
+#ship{
+    position:absolute;
+    top: calc(92vh - 71px);
+}
+
+#projectile{
+    position: absolute;
+    bottom: calc(5vh - 71px);;
+    left: 35px; 
+    visibility: hidden;
+}
