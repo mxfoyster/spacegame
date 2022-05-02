@@ -18,9 +18,14 @@ body{
     top: calc(92vh - 71px);
 }
 
-#projectile{
+.projectiles{
     position: absolute;
     bottom: calc(5vh - 71px);;
     left: 35px; 
-    visibility: hidden;
+    /* visibility: hidden; */
+}
+
+#arsenal{
+    min-height: 95vh;
+    min-width: 95vh
 }
