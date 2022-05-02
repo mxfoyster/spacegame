@@ -7,7 +7,7 @@ const arsenal = document.getElementById("arsenal");
 let xPos = (screen.width/2);
 const projectileStartY = 75 + (screen.height * 0.05);
 let lastYpos = projectileStartY;
-let numOfProjectiles = 4;
+let numOfProjectiles = 6;
 let numberCurrentlyFiring = 0;
 let projectileFiringGap = (screen.height - projectileStartY) / numOfProjectiles;
 
@@ -124,12 +124,15 @@ function SetFiring()
 //loop called from our SetFiring() fuction
 function FireProjectiles(thisProjectile, index, projectiles) {
     //if this one is firing, store the y location
+    
     if (thisProjectile.missileFiring == true) lastYpos = thisProjectile.missileYpos;
     //otherwise, we have a previous y location so if gap big enough, trigger the next one and leave
     else if (lastYpos > (thisProjectile.missileYpos + projectileFiringGap)){   
         numberCurrentlyFiring += 1;
         thisProjectile.missileFiring = true;
         thisProjectile.missileHandle.style.visibility = "visible";
+        console.log(numberCurrentlyFiring);
+        lastYpos=thisProjectile.missileYpos;
         return
     }
 }
