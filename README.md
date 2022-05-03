@@ -18,14 +18,14 @@ I am being 'good' this time and using the traditional staggered (opening on same
 
 ## Thank you to the following
 
-* *Keleborn* for the spaceship sprite [https://opengameart.org/content/spaceship-1-0]("https://opengameart.org/content/spaceship-1-0")
+* *Keleborn* for the spaceship sprite [https://opengameart.org/content/spaceship-1-0](https://opengameart.org/content/spaceship-1-0)
 
-* *Master484* for the projectiles [https://opengameart.org/content/bullet-collection-2-m484-games]("https://opengameart.org/content/bullet-collection-2-m484-games")
+* *Master484* for the projectiles [https://opengameart.org/content/bullet-collection-2-m484-games](https://opengameart.org/content/bullet-collection-2-m484-games)
 
 
-* *dravenx* for the enemy spacecraft [https://opengameart.org/content/ufos-and-spaceship]("https://opengameart.org/content/ufos-and-spaceship")
+* *dravenx* for the enemy spacecraft [https://opengameart.org/content/ufos-and-spaceship](https://opengameart.org/content/ufos-and-spaceship)
 
-* *NASA* for the space background [https://opengameart.org/content/bullet-collection-2-m484-games]("https://opengameart.org/content/bullet-collection-2-m484-games")
+* *NASA* for the space background [https://opengameart.org/content/bullet-collection-2-m484-games](https://opengameart.org/content/bullet-collection-2-m484-games)
 
 Whilst all these resources were downloaded under the Public Domain (or similar) with no attribution required, this artwork is awsome and has saved me a lot of time. Credit where credit is due. I hope to build this list into the game at some point.
   
