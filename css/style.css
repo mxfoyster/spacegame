@@ -1,5 +1,8 @@
 body{
-    background-color: black;
+    background-color: #00000099;
+    background-image: url("../images/background1.jpg");
+    background-size: cover;
+    background-blend-mode: overlay;
     min-height: 95vh;
     min-width: 95vw;
     border-style: groove;
@@ -27,5 +30,15 @@ body{
 
 #arsenal{
     min-height: 95vh;
-    min-width: 95vh
+    min-width: 95vw
+}
+
+.enemyShips{
+    position: absolute;
+    top: 10vh;
+}
+
+#enemies{
+    min-height: 95vh;
+    min-width: 95vw
 }
