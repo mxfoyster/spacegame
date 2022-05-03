@@ -27,7 +27,7 @@ function MainLoop(){
     if (keys.fire) SetFiring(); //firing logic
     
     //projectile moevement logic
-    projectiles.forEach(PositionProjectiles); 
+    if (typeof projectiles !== "undefined")projectiles.forEach(PositionProjectiles); 
     
     //ship movement logic
     //*** TO DO *** Implement time per iteration based movement 
@@ -39,7 +39,10 @@ function MainLoop(){
         if (xPos < (screen.width - 100))xPos +=1;
     
     //update ship position
-    ship.style.left = xPos + "px"; 
+    ship.style.left = xPos + "px";
+    
+    //we hit enemy check
+    projectiles.forEach(CheckHitToEnemy);
 }//end of main (Update) loop
 
 

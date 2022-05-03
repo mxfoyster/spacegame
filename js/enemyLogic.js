@@ -4,9 +4,11 @@
 // of this later according to level to alter enemy speed etc
 //
 const enemies = document.getElementById("enemies");
-
+const middle = (screen.width / 2);
+const numEnemies = 3;
+let enemyShipMinHeight = 10;
 //render enemies html
-for(i = 0; i < 3; i++) {
+for(i = 0; i < numEnemies; i++) {
     enemies.innerHTML+="<img src=\"images/enemy" + (i+1) + ".png\" class=\"enemyShips\" id=\"enemy" + i + "\"/>";
 }
 
@@ -14,25 +16,47 @@ for(i = 0; i < 3; i++) {
 let enemyObj = {
     enemyFiring: false,
     enemyYpos: projectileStartY,
-    enemyXpos: (screen.width / 2) - 5,
+    enemyXpos: middle - 5,
     enemyHandle: null,
+    enemyAlive: true,
 };
 
 const enemyArr = [];
+for (i = 0; i < numEnemies; i++)
+    enemyArr.push ({...enemyObj}); //copy into array using object literals {...Object}
 
 //assign handles for enemies (separately as explained earlier)
-for(i = 0; i < 3; i++) {
+for(i = 0; i < numEnemies; i++) {
     enemyString = "enemy" + i;
-    enemyArr.push(document.getElementById(enemyString)); //directly into array for now
-    enemyArr[i].style.left = xPos + (100 * (i)) + "px"; //temp starting position
-}  
+    enemyArr[i].enemyHandle = document.getElementById(enemyString); //directly into array for now
+    enemyArr[i].enemyXpos = xPos + (100 * (i));
+}
+  
 
 //move our enemies every 1/2 second in it's own update loop
 setInterval(MoveEnemies,500);
+let epos=enemyArr[0].enemyXpos;
 
 function MoveEnemies(){
-    for(i = 0; i < 3; i++) {
-       // enemyArr[i].style.left = parseInt(enemyArr[i].style.left) + 50 + "px"; //temp starting position
+    //we calculate for the middle enemy and move them ALL relative to that 
+    //to ensure the gap between  them doesn't get messed up each time we 
+    //change direction underneath them (alternate across 0 diff)
+    let thisEnemyXpos = enemyArr[1].enemyXpos;
+    let diff = xPos - thisEnemyXpos;
+    enemyArr[1].enemyYpos =  parseInt(enemyArr[1].enemyHandle.style.bottom)
+    enemyShipMinHeight = enemyArr[1].enemyYpos - 10;
+
+    for(i = 0; i < numEnemies; i++) {
+        let thisEnemyXpos = enemyArr[i].enemyXpos;
+        enemyArr[i].enemyHandle.style.left = thisEnemyXpos + "px"; 
+        enemyArr[i].enemyXpos += (diff/10);
+     
     }   
 }
 
+function CheckHitToEnemy(thisProjectile, index, projectiles){
+    if (!thisProjectile.missileFiring || thisProjectile.missileYpos < enemyShipMinHeight) return;  //nothing to detect, so we can leave
+    //if (project)
+
+    console.log(enemyArr[1].enemyHandle.style.top);
+}

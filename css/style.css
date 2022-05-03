@@ -35,7 +35,7 @@ body{
 
 .enemyShips{
     position: absolute;
-    top: 10vh;
+    bottom: 90vh;
 }
 
 #enemies{
