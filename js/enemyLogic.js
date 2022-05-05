@@ -6,6 +6,9 @@
 const enemies = document.getElementById("enemies");
 const middle = (screen.width / 2);
 const numEnemies = 3;
+const screenHeight = screen.height * 0.9; // See our css, we only use 90% of the height really
+const enemyXwidth = 69;
+const enemyYwidth = 45;
 let enemyShipMinHeight = 10;
 //render enemies html
 for(i = 0; i < numEnemies; i++) {
@@ -15,7 +18,7 @@ for(i = 0; i < numEnemies; i++) {
 //we'll be using this soon
 let enemyObj = {
     enemyFiring: false,
-    enemyYpos: projectileStartY,
+    enemyYpos: enemyShipMinHeight,
     enemyXpos: middle - 5,
     enemyHandle: null,
     enemyAlive: true,
@@ -30,6 +33,7 @@ for(i = 0; i < numEnemies; i++) {
     enemyString = "enemy" + i;
     enemyArr[i].enemyHandle = document.getElementById(enemyString); //directly into array for now
     enemyArr[i].enemyXpos = xPos + (100 * (i));
+    //enemyArr[i].enemyYpos = document.getElementById(enemyString).style.top;
 }
   
 
@@ -43,20 +47,36 @@ function MoveEnemies(){
     //change direction underneath them (alternate across 0 diff)
     let thisEnemyXpos = enemyArr[1].enemyXpos;
     let diff = xPos - thisEnemyXpos;
-    enemyArr[1].enemyYpos =  parseInt(enemyArr[1].enemyHandle.style.bottom)
-    enemyShipMinHeight = enemyArr[1].enemyYpos - 10;
+    //enemyArr[1].enemyYpos =  parseInt(enemyArr[1].enemyHandle.style.bottom)
+    enemyShipMinHeight = enemyArr[1].enemyYpos;
 
     for(i = 0; i < numEnemies; i++) {
-        let thisEnemyXpos = enemyArr[i].enemyXpos;
-        enemyArr[i].enemyHandle.style.left = thisEnemyXpos + "px"; 
-        enemyArr[i].enemyXpos += (diff/10);
-     
+        let thisEnemyElement = enemyArr[i];
+        let thisEnemyXpos = thisEnemyElement.enemyXpos;
+        let thisEnemyYpos = thisEnemyElement.enemyYpos;
+        thisEnemyElement.enemyHandle.style.left = thisEnemyXpos + "px"; 
+        thisEnemyElement.enemyXpos += (diff/10);
+        //thisEnemyElement.enemyYpos = thisEnemyElement.enemyHandle.style.top;
     }   
+    scoreHandle.innerHTML = score; //here because this is fast enough to update score
 }
 
+//note +10 in if, temp corerection factor
 function CheckHitToEnemy(thisProjectile, index, projectiles){
-    if (!thisProjectile.missileFiring || thisProjectile.missileYpos < enemyShipMinHeight) return;  //nothing to detect, so we can leave
-    //if (project)
+    if (!thisProjectile.missileFiring || thisProjectile.missileYpos < (screenHeight - (enemyShipMinHeight + 10))) return;  //nothing to detect, so we can leave
+    
+    for (i = 0; i < numEnemies; i++){
+        let thisEnemyYpos = enemyArr[i].enemyYpos;
+        let thisEnemyXpos = enemyArr[i].enemyXpos;
+        if (thisProjectile.missileXpos >= thisEnemyXpos && thisProjectile.missileXpos <= (thisEnemyXpos + enemyXwidth) && enemyArr[i].enemyAlive)
+           enemyHit(i);
+    }
 
-    console.log(enemyArr[1].enemyHandle.style.top);
+}
+
+function enemyHit(enemyIndex){
+    console.log("Hit " + enemyIndex);
+    enemyArr[i].enemyAlive = false;
+    enemyArr[i].enemyHandle.style.visibility = "hidden";
+    score += 10;
 }

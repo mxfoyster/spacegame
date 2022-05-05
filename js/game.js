@@ -5,6 +5,8 @@
 document.addEventListener("keydown", function(e){KeyDownInput(e)});
 document.addEventListener("keyup", function(e){KeyUpInput(e)});
 const ship = document.getElementById("ship");
+const scoreHandle = document.getElementById("score");
+let score = 0;
 
 //set up our start values
 let xPos = (screen.width/2);
